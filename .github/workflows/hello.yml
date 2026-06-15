@@ -14,10 +14,14 @@ jobs:
       SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PAT }}
       SNOWFLAKE_AUTHENTICATOR: programmatic_access_token
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout cicd-templates
+        uses: actions/checkout@v4
+        with:
+          repository: erichamers/cicd-templates
+          ref: main
       - name: Install Snowflake CLI
         uses: snowflakedb/snowflake-cli-action@v2.0
       - name: Test connection
-        run: snow connection test
+        run: snow connection test`
       - name: Run SQL
         run: snow sql -q "SELECT CURRENT_USER(), CURRENT_ROLE(), '${{ inputs.environment }}' AS ENVIRONMENT" -x
