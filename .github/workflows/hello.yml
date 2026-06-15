@@ -11,18 +11,12 @@ jobs:
     env:
       SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
       SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
-      SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PAT }}
+      SNOWFLAKE_TOKEN: ${{ secrets.SNOWFLAKE_PAT }}
       SNOWFLAKE_AUTHENTICATOR: programmatic_access_token
-      SNOWFLAKE_DATABASE: CICD_TEST_DB
-      SNOWFLAKE_SCHEMA: PUBLIC
-      SNOWFLAKE_WAREHOUSE: COMPUTE_WH
-      SNOWFLAKE_ROLE: SYSADMIN
+      SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+      SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
     steps:
-      - name: Checkout cicd-templates
-        uses: actions/checkout@v4
-        with:
-          repository: erichamers/cicd-templates
-          ref: main
+      - uses: actions/checkout@v4
       - name: Install Snowflake CLI
         uses: snowflakedb/snowflake-cli-action@v2.0
       - name: Test connection
