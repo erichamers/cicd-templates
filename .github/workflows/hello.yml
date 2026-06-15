@@ -12,18 +12,12 @@ jobs:
       SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
       SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
       SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PAT }}
-      SNOWFLAKE_AUTHENTICATOR: programmatic_access_token
     steps:
       - uses: actions/checkout@v4
       - name: Install Snowflake CLI
         uses: snowflakedb/snowflake-cli-action@v2.0
       - name: Test connection
         run: |
-          snow connection test \
-            --account $SNOWFLAKE_ACCOUNT \
-            --user $SNOWFLAKE_USER \
-            --password $SNOWFLAKE_PASSWORD \
-            --authenticator programmatic_access_token \
-            -x
+          snow connection test -x
       - name: Run SQL
         run: snow sql -q "SELECT CURRENT_USER(), CURRENT_ROLE(), '${{ inputs.environment }}' AS ENVIRONMENT" -x
