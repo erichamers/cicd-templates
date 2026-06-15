@@ -1,0 +1,14 @@
+# cicd-templates/.github/workflows/hello.yml
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print environment
+        run: echo "Deploying to ${{ inputs.environment }}"
