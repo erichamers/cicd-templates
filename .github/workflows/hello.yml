@@ -13,6 +13,10 @@ jobs:
       SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
       SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PAT }}
       SNOWFLAKE_AUTHENTICATOR: programmatic_access_token
+      SNOWFLAKE_DATABASE: CICD_TEST_DB
+      SNOWFLAKE_SCHEMA: PUBLIC
+      SNOWFLAKE_WAREHOUSE: COMPUTE_WH
+      SNOWFLAKE_ROLE: SYSADMIN
     steps:
       - name: Checkout cicd-templates
         uses: actions/checkout@v4
