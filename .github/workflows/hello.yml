@@ -17,9 +17,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install Snowflake CLI
         uses: snowflakedb/snowflake-cli-action@v2.0
-        with:
-          default-config-file-path: "config.toml"
       - name: Test connection
-        run: snow connection test --connection cicd
+        run: snow connection test --connection cicd -x
       - name: Run SQL
         run: snow sql -q "SELECT CURRENT_USER(), CURRENT_ROLE(), '${{ inputs.environment }}' AS ENVIRONMENT" -x
