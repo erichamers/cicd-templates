@@ -18,6 +18,6 @@ jobs:
       - name: Install Snowflake CLI
         uses: snowflakedb/snowflake-cli-action@v2.0
       - name: Test connection
-        run: snow connection test -x
+        run: snow connection test
       - name: Run SQL
         run: snow sql -q "SELECT CURRENT_USER(), CURRENT_ROLE(), '${{ inputs.environment }}' AS ENVIRONMENT" -x
