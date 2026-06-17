@@ -1,4 +1,0 @@
-[connections.cicd]
-account = ""
-user = ""
-authenticator = "programmatic_access_token"
