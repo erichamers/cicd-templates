@@ -50,6 +50,7 @@ jobs:
             --role ${{ vars.SNOWFLAKE_ROLE }} \
             --warehouse ${{ vars.SNOWFLAKE_WAREHOUSE }} \
             --no-interactive
+          snow connection set-default ci
 
       - name: Execute dbt run
         run: |
