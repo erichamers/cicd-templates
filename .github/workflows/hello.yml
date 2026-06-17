@@ -31,3 +31,20 @@ jobs:
 
       - name: Test connection
         run: snow connection test -x
+
+      - name: Deploy dbt project
+        run: |
+          snow dbt deploy pharma_shipments \
+            --source ./export_sample_project \
+            --database ${{ vars.SNOWFLAKE_DATABASE }} \
+            --schema ${{ vars.SNOWFLAKE_SCHEMA }} \
+            --force \
+            --install-local-deps \
+            -x
+
+      - name: Execute dbt run
+        run: |
+          snow dbt execute pharma_shipments run \
+            --database ${{ vars.SNOWFLAKE_DATABASE }} \
+            --schema ${{ vars.SNOWFLAKE_SCHEMA }} \
+            -x
