@@ -53,8 +53,4 @@ jobs:
           snow connection set-default ci
 
       - name: Execute dbt run
-        run: |
-          snow dbt execute pharma_shipments run \
-            --database ${{ vars.SNOWFLAKE_DATABASE }} \
-            --schema ${{ vars.SNOWFLAKE_SCHEMA }} \
-            --connection ci
+        run: snow dbt execute pharma_shipments run
