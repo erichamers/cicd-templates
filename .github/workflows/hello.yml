@@ -52,5 +52,8 @@ jobs:
             --no-interactive
           snow connection set-default ci
 
+      - name: Seed dbt project
+        run: snow dbt execute pharma_shipments seed
+        
       - name: Execute dbt run
         run: snow dbt execute pharma_shipments run
