@@ -47,4 +47,10 @@ jobs:
           snow dbt execute pharma_shipments run \
             --database ${{ vars.SNOWFLAKE_DATABASE }} \
             --schema ${{ vars.SNOWFLAKE_SCHEMA }} \
-            -x
+            --account ${{ vars.SNOWFLAKE_ACCOUNT }} \
+            --user ${{ vars.SNOWFLAKE_USER }} \
+            --role ${{ vars.SNOWFLAKE_ROLE }} \
+            --warehouse ${{ vars.SNOWFLAKE_WAREHOUSE }} \
+            --private-key-file rsa_key.pem \
+            --authenticator SNOWFLAKE_JWT \
+            --temporary-connection
